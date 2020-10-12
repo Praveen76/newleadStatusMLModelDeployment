@@ -10,7 +10,30 @@ app = Flask(__name__)
 model = pickle.load(open('./RF_Model.sav','rb'))
 
 enc = pickle.load(open('./encoder.pkl','rb'))
- 
+
+
+def monthsInNum(argument):
+    month=argument.lower()
+    print('month->',month)
+    
+    switcher = {
+        "jan":1,
+        "feb":2,
+        "mar":3,
+        "apr":4,
+        "may":5,
+        "jun":6,
+        "jul":7,
+        "aug":8,
+        "sep":9,
+        "oct":10,
+        "nov":11,
+        "dec":12
+    }
+    # Get the function from switcher dictionary
+    return switcher.get(month, "nothing") 
+    
+
 
 @app.route('/')
 def home():
@@ -29,6 +52,9 @@ def predict():
     catVar = [element for i, element in enumerate(int_features) if i in Catindices]
     catVar
     numVar = [element for i, element in enumerate(int_features) if i in Numindices]
+    
+    numVar[1]=monthsInNum(numVar[1])
+    
     catVar=[catVar]
     print('catVar',catVar)
     print('numVar',numVar)
