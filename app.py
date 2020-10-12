@@ -76,7 +76,7 @@ def predict():
     print(prediction[0])
 
     #output = round(prediction[0], 2)
-    return render_template('home.html', prediction_text="Predicted leads percentage for input datapoints : {} %".format(predPrctg[0]))
+    return render_template('home.html', prediction_text="Probability Of Lead Conversion : {} %".format(predPrctg[0]))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
